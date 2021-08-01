@@ -12,13 +12,14 @@ import java.util.Scanner;
  * information with respect to time.  A non iterative version will simply
  * report how much time has passed when a seed is set and the function 
  * performs calculations until it begins to repeat 4, 2, and 1.  Hence, one
- * pass of calculations is performed.
+ * pass of calculations is performed.  Finally the time taken to reach 4, 2, 1,
+ * is reported in microseconds.
  * 
  * The second method takes the seed and completes a pass, decrements the seed
  * by 1 and performs it again until it reaches 0 then finally quits.  Then
- * the time for all of the passes are reported.
+ * the time for all of the passes are reported in microseconds.
  * @author Chad Chapman
- *@version 1.0
+ * @version 1.0
  *
  */
 public class Driver 

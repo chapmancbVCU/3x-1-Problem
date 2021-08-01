@@ -1,6 +1,7 @@
-# 3x+1
+# 3x+1 Problem (Collatz conjecture)
 
-This software is intended to demonstrate the 3x+1 problem.
+This software is intended to demonstrate how the Collatz conjecture
+(3x+1) function is calculated.
 
 It is defined as a function where in a case a seed is even, then
 you divide it by 2.  If it is odd, you solve 3x+1, where x is the seed.

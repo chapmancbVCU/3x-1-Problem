@@ -1,5 +1,5 @@
 Machines being tested:
-* 2021 MacBook Air with M1 processor, 8GB RAM, 8 Core CPU, 7 Core GPU
+* 2021 MacBook Air with M1 processor, 8GB RAM, 8 Core CPU, 7 Core GPU, Translated with Rosetta 2
 * 2019 (Purchased in 2021 as new) 16" MacBook Pro, 16 GB, 2.3 GHz 8-Core Intel Core i9
 
 Single Pass:

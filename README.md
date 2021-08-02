@@ -10,7 +10,6 @@ repeatedly.  The function is a follows:
 
 f(x):
 If x mod 2 = 0 then x/2
-
   If x mod 2 = 1 then 3x+1
  
 This program has 2 ways of performing this in order to present performance

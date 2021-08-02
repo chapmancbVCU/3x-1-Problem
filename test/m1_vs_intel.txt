@@ -1,26 +1,51 @@
 Machines being tested:
-* 2021 MacBook Air with M1 processor, 8GB RAM, 8 Core CPU, 7 Core GPU, Translated with Rosetta 2
-* 2019 (Purchased in 2021 as new) 16" MacBook Pro, 16 GB, 2.3 GHz 8-Core Intel Core i9
+* 2021 MacBook Air with M1 processor, 8GB RAM, 8 Core CPU, 7 Core GPU, Translated with Rosetta 2, MacOS
+* 2019 (Purchased in 2021 as new) 16" MacBook Pro, 16 GB, 2.3 GHz 8-Core Intel Core i9, MacOS
+
+Just for fun I included times for:
+* 2013 13" MacBook Pro, Ubuntu
+* 2012 Lenovo P500, Rocky Linux
 
 Single Pass:
 
 Times are in microseconds
 
-                      Test 1                    Test 2
-Seed            M1          Intel         M1          Intel         # of Calculations to Reach 4,2,1 loop
-*********************************************************************************************************
-1               302         84            280         67            3
-10              689         146           456         119           6
-50              1,293       367           1,165       455           24
-100             1,139       582           1,154       459           25
-500             5,327       1,616         4,946       1,978         110
-1,000           4,138       1,598         5,205       2,018         111
-5,000           1,090       590           1,222       569           28
-10,000          1,795       725           2,160       534           29
-50,000          6,124       2,757         6,691       2,178         127
-100,000         6,370       1,872         5,484       2,425         128
-500,000         7,396       2,160         5,205       2,602         151
-1,000,000       6,426       2,624         8,249       2,682         152
-5,000,000       6,860       2,309         4,719       1,976         114
-10,000,000      7,777       2,628         5.571       2,211         145
-100,000,000     4,634       1,639         4,642       1,566         107
+***************************************************************************************************
+                    Test 1               Test 2
+***************************************************************************************************
+Seed            M1        Intel      M1        Intel      2013       2012       # of Calculations 
+                                                          MacBook    Lenovo     to Reach 4,2,1 loop
+***************************************************************************************************
+1               302       84         280       67         375        124        3
+10              689       146        456       119        889        187        6
+50              1,293     367        1,165     455        3,092      794        24
+100             1,139     582        1,154     459        2,828      894        25
+500             5,327     1,616      4,946     1,978      9,753      3,469      110
+1,000           4,138     1,598      5,205     2,018      11,001     3,479      111
+5,000           1,090     590        1,222     569        3,262      813        28
+10,000          1,795     725        2,160     534        3,831      988        29
+50,000          6,124     2,757      6,691     2,178      11,700     4,003      127
+100,000         6,370     1,872      5,484     2,425      11,899     4,147      128
+500,000         7,396     2,160      5,205     2,602      10,830     4,929      151
+1,000,000       6,426     2,624      8,249     2,682      12,647     4,740      152
+5,000,000       6,860     2,309      4,719     1,976      12,136     4,788      114
+10,000,000      7,777     2,628      5.571     2,211      10,486     5,089      145
+100,000,000     4,634     1,639      4,642     1,566      11,459     3,526      107
+***************************************************************************************************
+
+Summary: 
+A direct comparison shows that the Intal 16" MacBook Pro wins compared to the M1.  Who could this be?
+Consider that both machines are running the same version of Java and compiled by the same version of
+the Java JDK by Amazon.  Despite the M1 oblierating the Intel machine in almost all Geek Bench
+tests the biggest drawback is the extra layer of computation that involves Rosetta 2.
+
+Will the M1 win against the Intel machine using another language like C++?  It is a strong
+possibility if you use a compiler that outputs an executable that runs directly on the M1 architcture.
+You could also assume the same with a Java Runtime Environment that runs directly on the M1 chip.  We
+will have to wait and see when a JRE becomes available.
+
+Results:
+1st place:  Intel MacBook Pro
+2nd place:  2012 Lenovo
+3rd place:  M1 MacBook Air
+4th place:  2013 13" MacBook Pro

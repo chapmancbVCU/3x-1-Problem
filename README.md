@@ -8,8 +8,9 @@ you divide it by 2.  If it is odd, you solve 3x+1, where x is the seed.
 This will repeat until you begin to observe 4, 2 and 1 being the output
 repeatedly.  The function is a follows:
 
-f(x): 
+f(x):
 If x mod 2 = 0 then x/2
+
 If x mod 2 = 1 then 3x+1
  
 This program has 2 ways of performing this in order to present performance

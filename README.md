@@ -18,3 +18,6 @@ is reported in microseconds.
 The second method takes the seed and completes a pass, decrements the seed
 by 1 and performs it again until it reaches 0 then finally quits.  Then
 the time for all of the passes are reported in microseconds.
+
+For results comparing the M1 and Intel checkout the m1_vs_intel.txt file
+in the test directory.

@@ -4,7 +4,7 @@ Machines being tested:
 
 Just for fun I included times for:
 * 2013 13" MacBook Pro, Ubuntu
-* 2012 Lenovo P500, Rocky Linux
+* 2012 Lenovo P500, Rocky Linux (Downstream distrobution from RedHat)
 
 Single Pass:
 

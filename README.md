@@ -5,8 +5,8 @@ This software is intended to demonstrate how the Collatz conjecture
 
 It is defined as a function where in a case a seed is even, then
 you divide it by 2.  If it is odd, you solve 3x+1, where x is the seed.
-This will repeat until you begin to observe 4, 2 and 1 being the output
-repeatedly.  The function is a follows:
+This will repeat until you begin to observe 4, 2 and 1 being a repeated
+output.  The function is a follows:
 
 f(x):
 

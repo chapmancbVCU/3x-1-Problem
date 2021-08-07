@@ -19,7 +19,7 @@ import java.util.Scanner;
  * by 1 and performs it again until it reaches 0 then finally quits.  Then
  * the time for all of the passes are reported in microseconds.
  * @author Chad Chapman
- * @version 1.0
+ * @version 1.1
  *
  */
 public class Driver 
@@ -45,11 +45,13 @@ public class Driver
 			System.out.println("Select iterative or non-iterative version.");
 			System.out.println("a - iterative");
 			System.out.println("b - non-iterative");
+			System.out.println("c - average");
 			mySelection = sel.next();
 			
 			// Check if selection is valid.
 			if(mySelection.compareTo("a") == 0 || 
-					mySelection.compareTo("b") == 0)
+					mySelection.compareTo("b") == 0 ||
+					mySelection.compareTo("c") == 0)
 			{
 				select = true;
 			}
@@ -67,73 +69,17 @@ public class Driver
 		else if(mySelection.compareTo("b") == 0)
 		{
 			no_iter(seed);
-		}	
-	}
-	
-	
-	/**
-	 * In this method we do one pass based on the seed without decrementing
-	 * the seed.
-	 * @param seed The initial seed.
-	 */
-	public static void no_iter(long seed)
-	{	
-		// Count the number of steps.
-		int count = 0;
-		
-		// After we reach 1 we don't let it stop.  We let the loop
-		// go 2 more times for numbers 4, 2, and 1.
-		int test = 0;
-		
-		Hailstone stone = new Hailstone();
-		
-		// Time of when we enter method to get how long it takes to complete
-		// all calculations.  We start counting time right before we
-		// enter the while loop where calculations occur.
-		long startTime = System.nanoTime();
-		long estimatedTime = 0;
-		
-		// While test is less than 2 we stay in this loop.
-		while(test < 2)
-		{
-			// Call the method that calculates the 3x+1 function.
-			seed = stone.myFunc(seed);
-			
-			// We begin incrementing when seed = 1.
-			if(seed == 1 && test == 0)
-			{
-				// The first time we reach 1 we grab the system time.
-				estimatedTime = System.nanoTime() - startTime;
-				count++;
-				test++;
-			}
-			else if(seed == 1 && test > 0)
-			{
-				test++;
-			}
-			
-			// Before seed reaches 1 for the first time we increment
-			// the count long variable to get an accurate number of 
-			// steps before we see 1 as an answer for the first time.
-			else if (test == 0) 
-			{	
-				count++;
-			}
-			
-			//We print the result/new seed for next call of myFunc method.
-			System.out.println(seed);
-			
-			// When seed is 1 print some * so we can tell where the
-			// second 4,2,1 group is located.
-			if(seed == 1) 
-			{
-				System.out.println("********************");
-			}
 		}
-		
-		// We report the number of steps after we exit the while loop.
-		System.out.println("It took " + count + " calculations to complete in "
-				+ estimatedTime/1000 + " microseconds.");
+		else if(mySelection.compareTo("c") == 0)
+		{
+			int max = 1000;
+			long sum = 0;
+			for(int i = 0; i < max; i++)
+			{
+				sum = sum + no_iter(seed);
+			}
+			System.out.println("Average = " + sum/max);
+		}
 	}
 	
 	
@@ -144,6 +90,7 @@ public class Driver
 	 * and so forth until it reaches 0.
 	 * the seed.
 	 * @param seed The initial seed.
+	 * @return report The time it takes to calculate in microseconds.
 	 */
 	public static void iter(long seed)
 	{	
@@ -206,7 +153,76 @@ public class Driver
 		
 		// We report how long it took to complete all calculations.
 		System.out.println("Starting with an initial seed of " + initialSeed
-				+ " and going down to 0,");
+				+ " and going down to 1,");
 		System.out.println("it took " + estimatedTime/1000 + " microseconds");
+	}
+	
+	
+	/**
+	 * In this method we do one pass based on the seed without decrementing
+	 * the seed.
+	 * @param seed The initial seed.
+	 */
+	public static long no_iter(long seed)
+	{	
+		// Count the number of steps.
+		int count = 0;
+		
+		// After we reach 1 we don't let it stop.  We let the loop
+		// go 2 more times for numbers 4, 2, and 1.
+		int test = 0;
+		
+		Hailstone stone = new Hailstone();
+		
+		// Time of when we enter method to get how long it takes to complete
+		// all calculations.  We start counting time right before we
+		// enter the while loop where calculations occur.
+		long startTime = System.nanoTime();
+		long estimatedTime = 0;
+		
+		// While test is less than 2 we stay in this loop.
+		while(test < 2)
+		{
+			// Call the method that calculates the 3x+1 function.
+			seed = stone.myFunc(seed);
+			
+			// We begin incrementing when seed = 1.
+			if(seed == 1 && test == 0)
+			{
+				// The first time we reach 1 we grab the system time.
+				estimatedTime = System.nanoTime() - startTime;
+				count++;
+				test++;
+			}
+			else if(seed == 1 && test > 0)
+			{
+				test++;
+			}
+			
+			// Before seed reaches 1 for the first time we increment
+			// the count long variable to get an accurate number of 
+			// steps before we see 1 as an answer for the first time.
+			else if (test == 0) 
+			{	
+				count++;
+			}
+			
+			//We print the result/new seed for next call of myFunc method.
+			System.out.println(seed);
+			
+			// When seed is 1 print some * so we can tell where the
+			// second 4,2,1 group is located.
+			if(seed == 1) 
+			{
+				System.out.println("********************");
+			}
+		}
+		
+		long report = estimatedTime/1000;
+		// We report the number of steps after we exit the while loop.
+		System.out.println("It took " + count + " calculations to complete in "
+				+ estimatedTime/1000 + " microseconds.");
+		
+		return report;
 	}
 }

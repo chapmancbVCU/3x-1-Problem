@@ -45,13 +45,17 @@ public class Driver
 			System.out.println("Select iterative or non-iterative version.");
 			System.out.println("a - iterative");
 			System.out.println("b - non-iterative");
-			System.out.println("c - average");
+			System.out.println("c - non-iterative average");
+			System.out.println("d - non-iterative optimized");
+			System.out.println("e - non-iterative average optimized");
 			mySelection = sel.next();
 			
 			// Check if selection is valid.
 			if(mySelection.compareTo("a") == 0 || 
 					mySelection.compareTo("b") == 0 ||
-					mySelection.compareTo("c") == 0)
+					mySelection.compareTo("c") == 0 ||
+					mySelection.compareTo("d") == 0 ||
+					mySelection.compareTo("e") == 0)
 			{
 				select = true;
 			}
@@ -61,168 +65,53 @@ public class Driver
 		input.close();
 		sel.close();
 		
+		CollatzHelper helper = new CollatzHelper();
 		// Use mySelection to select which version to use.
 		if(mySelection.compareTo("a") == 0)
 		{
-			iter(seed);
+			helper.iter(seed);
 		}
 		else if(mySelection.compareTo("b") == 0)
 		{
-			no_iter(seed);
+			helper.noIter(seed);
 		}
 		else if(mySelection.compareTo("c") == 0)
 		{
-			int max = 1000;
+			// Time we will perform calculations before calculating average.
+			// We use long in order to not mix primitive data types when we
+			// perform sum/max operation.
+			long max = 1000;
+			
+			// The sum we will create to divide by max to get average.
 			long sum = 0;
-			for(int i = 0; i < max; i++)
+			
+			for(long i = 0; i < max; i++)
 			{
-				sum = sum + no_iter(seed);
+				sum = sum + helper.noIter(seed);
+				System.out.println();
 			}
-			System.out.println("Average = " + sum/max);
+			System.out.println("Average = " + sum/max + " microseconds");
 		}
-	}
-	
-	
-	/**
-	 * In this method we accept the seed as input and perform many passes
-	 * of calculations.  If the seed is 6, we perform one pass, decrement
-	 * a long that was set to the initial seed and perform another pass,
-	 * and so forth until it reaches 0.
-	 * the seed.
-	 * @param seed The initial seed.
-	 * @return report The time it takes to calculate in microseconds.
-	 */
-	public static void iter(long seed)
-	{	
-		// After we reach 1 we don't let it stop.  We let the loop
-		// go 2 more times for numbers 4, 2, and 1.
-		int test = 0;
-		
-		Hailstone stone = new Hailstone();
-		
-		// Time of when we enter method to get how long it takes to complete
-		// all calculations.  We start counting time right before we
-		// enter the while loop where calculations occur.
-		long startTime = System.nanoTime();
-		
-		// We use this value to keep track of how many passes we need to make.
-		// It get decremented until it reaches 0.
-		long newSeed = seed;
-		
-		// We use this value to report the original seed in our report.
-		long initialSeed = seed;
-		
-		while(true)
+		else if(mySelection.compareTo("d") == 0)
 		{
-			// While test is less than 2 we stay in this loop.
-			while(test < 2)
-			{
-				seed = stone.myFunc(seed);
-				
-				// We begin incrementing when seed = 1.
-				if(seed == 1)
-				{
-					test++;
-				}
-			}
-			
-			// Decrement i, this will be the value of our new seed for
-			// the next pass.
-			newSeed--;
-			
-			// When i is 0 we no longer need to perform calculations.
-			// So we exit the while loop.
-			if(newSeed == 0)
-			{
-				break;
-			}
-			else 
-			{
-				// Setup the value for the seed for the next pass.
-				seed = newSeed;
-				
-				// We reset this value for the new seed value.
-				test = 0;
-				System.out.println("New seed:" + seed);
-			}
+			helper.noIterOptimized(seed);
 		}
-		
-		// This is how long it took to complete all passes from initial seed
-		// down to 1.
-		long estimatedTime = System.nanoTime() - startTime;
-		
-		// We report how long it took to complete all calculations.
-		System.out.println("Starting with an initial seed of " + initialSeed
-				+ " and going down to 1,");
-		System.out.println("it took " + estimatedTime/1000 + " microseconds");
-	}
-	
-	
-	/**
-	 * In this method we do one pass based on the seed without decrementing
-	 * the seed.
-	 * @param seed The initial seed.
-	 */
-	public static long no_iter(long seed)
-	{	
-		// Count the number of steps.
-		int count = 0;
-		
-		// After we reach 1 we don't let it stop.  We let the loop
-		// go 2 more times for numbers 4, 2, and 1.
-		int test = 0;
-		
-		Hailstone stone = new Hailstone();
-		
-		// Time of when we enter method to get how long it takes to complete
-		// all calculations.  We start counting time right before we
-		// enter the while loop where calculations occur.
-		long startTime = System.nanoTime();
-		long estimatedTime = 0;
-		
-		// While test is less than 2 we stay in this loop.
-		while(test < 2)
+		else if(mySelection.compareTo("e") == 0)
 		{
-			// Call the method that calculates the 3x+1 function.
-			seed = stone.myFunc(seed);
+			// Time we will perform calculations before calculating average.
+			// We use long in order to not mix primitive data types when we
+			// perform sum/max operation.
+			long max = 1000;
 			
-			// We begin incrementing when seed = 1.
-			if(seed == 1 && test == 0)
+			// The sum we will create to divide by max to get average.
+			long sum = 0;
+			
+			for(long i = 0; i < max; i++)
 			{
-				// The first time we reach 1 we grab the system time.
-				estimatedTime = System.nanoTime() - startTime;
-				count++;
-				test++;
+				sum = sum + helper.noIterOptimized(seed);
+				System.out.println();
 			}
-			else if(seed == 1 && test > 0)
-			{
-				test++;
-			}
-			
-			// Before seed reaches 1 for the first time we increment
-			// the count long variable to get an accurate number of 
-			// steps before we see 1 as an answer for the first time.
-			else if (test == 0) 
-			{	
-				count++;
-			}
-			
-			//We print the result/new seed for next call of myFunc method.
-			System.out.println(seed);
-			
-			// When seed is 1 print some * so we can tell where the
-			// second 4,2,1 group is located.
-			if(seed == 1) 
-			{
-				System.out.println("********************");
-			}
+			System.out.println("Average = " + sum/max + " microseconds");
 		}
-		
-		long report = estimatedTime/1000;
-		// We report the number of steps after we exit the while loop.
-		System.out.println("It took " + count + " calculations to complete in "
-				+ estimatedTime/1000 + " microseconds.");
-		
-		return report;
 	}
 }

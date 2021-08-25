@@ -22,19 +22,22 @@ public class Hailstone
 	 */
 	public long myFunc(long seed)
 	{
-		// We need this value otherwise things in the Driver class break
-		// and keep printing 0 after we reach certain conditions.
+		/*
+		 * We need this value otherwise things in the Driver class break
+		 * and keep printing 0 after we reach certain conditions.
+		 */
 		long answer = 0;
 		
-		// When even, we divide by 2.
-		if(seed%2 == 0)
-		{
-			answer =  seed / 2;
-		}
+		
 		// When odd, we solve 3x+1.
-		else if(seed%2 == 1)
+		if(seed%2 == 1)
 		{
 			answer = 3 * seed + 1;
+		}
+		// When even, we divide by 2.
+		else if(seed%2 == 0)
+		{
+			answer =  seed / 2;
 		}
 		
 		return answer;

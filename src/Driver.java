@@ -8,9 +8,9 @@ import java.util.Scanner;
  * This will repeat until you begin to observe 4, 2 and 1 being the output
  * repeatedly.
  * 
- * This program has 2 ways of performing this in order to present performance
- * information with respect to time.  A non iterative version will simply
- * report how much time has passed when a seed is set and the function 
+ * This program has several ways of performing this in order to present 
+ * performance information with respect to time.  A non iterative version will 
+ * simply report how much time has passed when a seed is set and the function 
  * performs calculations until it begins to repeat 4, 2, and 1.  Hence, one
  * pass of calculations is performed.  Finally the time taken to reach 4, 2, 1,
  * is reported in microseconds.
@@ -18,8 +18,16 @@ import java.util.Scanner;
  * The second method takes the seed and completes a pass, decrements the seed
  * by 1 and performs it again until it reaches 0 then finally quits.  Then
  * the time for all of the passes are reported in microseconds.
+ * 
+ * Next there are is a non-iterative average that is like the first option
+ * except that the average is reported.  Then there is an optimized option
+ * that does not make a call to the Hailstone class in order to reduce the 
+ * amount of time and resources needed to perform calculations.  The logic
+ * of the calculation is also optimized.  Finally there is a optimized version
+ * that reports the average of repeated calculations.
+ * 
  * @author Chad Chapman
- * @version 1.1
+ * @version 1.2
  *
  */
 public class Driver 

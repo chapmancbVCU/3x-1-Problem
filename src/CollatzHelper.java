@@ -1,4 +1,10 @@
 
+/**
+ * This class has methods that support and perform calculations.  Which method
+ * that is used depends on which options the user chooses in the Driver class.
+ * @author Chad Chapman
+ * @version 1.0
+ */
 public class CollatzHelper 
 {
 	
@@ -170,7 +176,10 @@ public class CollatzHelper
 	
 	/**
 	 * In this method we do one pass based on the seed without decrementing
-	 * the seed.
+	 * the seed.  This version of the non iteration method also has some
+	 * optimization features so that there is not call to the Hailstone class
+	 * and the logic is also updated to reduce the amount of time it takes to
+	 * perform calculations.
 	 * @param seed The initial seed.
 	 * @return report The time it takes to calculate in microseconds.
 	 */

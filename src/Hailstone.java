@@ -2,7 +2,7 @@
  * This class contains one method that implements the function
  * of the 3x+1 (hail stone) problem.
  * @author Chad Chapman
- * @version 1.0
+ * @version 1.1
  * 
  */
 public class Hailstone 
